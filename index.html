@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RMG Ads Monitor</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Meta Ad Library • Real Money Gaming</p>
+        <h1>Live RMG ads, organized by publisher</h1>
+        <p class="lede">Fetch live ads from the Meta Graph API, filter by RMG category and publisher, and keep screenshots handy for quick reviews.</p>
+      </div>
+      <div class="hero__note">
+        <p class="note__title">Quick start</p>
+        <ol>
+          <li>Paste a valid Graph API access token.</li>
+          <li>Select your RMG categories and publishers.</li>
+          <li>Run the search to see grouped ads with snapshots.</li>
+        </ol>
+        <p class="note">All publishers are restricted to the United States ad region.</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Filters</h2>
+        <p class="muted">Active filters appear above the results. Use include/exclude to narrow down categories.</p>
+      </div>
+
+      <div class="grid">
+        <label class="field">
+          <span>Meta Graph API access token</span>
+          <input id="tokenInput" type="password" placeholder="EAAB..." autocomplete="off" />
+          <small class="muted">Token is only stored locally in your browser.</small>
+        </label>
+
+        <label class="field">
+          <span>Search terms (optional)</span>
+          <input id="searchTerms" type="text" placeholder="e.g. sportsbook bonus" />
+          <small class="muted">Defaults to a broad RMG search if left empty.</small>
+        </label>
+
+        <div class="field">
+          <span>RMG category</span>
+          <div class="inline">
+            <select id="categorySelect"></select>
+            <select id="includeSelect">
+              <option value="include">Include</option>
+              <option value="exclude">Exclude</option>
+            </select>
+            <button id="addFilter" class="btn">Add filter</button>
+          </div>
+          <small class="muted">Pick a category then choose whether to include or exclude it from results.</small>
+        </div>
+
+        <div class="field">
+          <span>Result limit</span>
+          <input id="limitInput" type="number" min="1" max="100" value="25" />
+          <small class="muted">Applies to each request sent to the Meta Graph API.</small>
+        </div>
+      </div>
+
+      <div id="activeFilters" class="chips" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__header">
+        <h2>Publishers</h2>
+        <p class="muted">Select one or more publishers. Results will be grouped and screenshot links added for quick reference.</p>
+      </div>
+      <div id="publisherList" class="publisher-grid"></div>
+    </section>
+
+    <section class="panel">
+      <div class="actions">
+        <button id="fetchAds" class="btn primary">Fetch live ads</button>
+        <button id="loadMock" class="btn ghost">Load mock sample</button>
+        <p class="muted">Ads are always requested for the United States region to match publisher requirements.</p>
+      </div>
+      <div id="status" role="status" aria-live="polite" class="status muted"></div>
+    </section>
+
+    <section class="panel results">
+      <div class="panel__header">
+        <h2>Results</h2>
+        <p class="muted">Ads are grouped by publisher with snapshot links so you can capture or review creatives quickly.</p>
+      </div>
+      <div id="results" class="results__grid"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
