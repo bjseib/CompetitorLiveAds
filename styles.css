@@ -83,10 +83,6 @@ h1 {
   box-shadow: var(--shadow);
 }
 
-.panel--filters {
-  padding: 24px;
-}
-
 .panel__header {
   display: flex;
   align-items: center;
@@ -108,7 +104,7 @@ h1 {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px 20px;
+  gap: 12px 16px;
 }
 
 .field {
